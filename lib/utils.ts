@@ -1,6 +1,6 @@
 /* eslint-disable no-prototype-builtins */
 import { type ClassValue, clsx } from "clsx";
-// import qs from "query-string";
+import qs from "query-string";
 import { twMerge } from "tailwind-merge";
 // import { z } from "zod";
 
@@ -88,19 +88,19 @@ interface UrlQueryParams {
   value: string;
 }
 
-// export function formUrlQuery({ params, key, value }: UrlQueryParams) {
-//   const currentUrl = qs.parse(params);
+export function formUrlQuery({ params, key, value }: UrlQueryParams) {
+  const currentUrl = qs.parse(params);
 
-//   currentUrl[key] = value;
+  currentUrl[key] = value;
 
-//   return qs.stringifyUrl(
-//     {
-//       url: window.location.pathname,
-//       query: currentUrl,
-//     },
-//     { skipNull: true }
-//   );
-// }
+  return qs.stringifyUrl(
+    {
+      url: window.location.pathname,
+      query: currentUrl,
+    },
+    { skipNull: true }
+  );
+}
 
 export function getAccountTypeColors(type: AccountTypes) {
   switch (type) {
@@ -138,7 +138,7 @@ export function countTransactionCategories(
 
   // Iterate over each transaction
   transactions &&
-    transactions.forEach((transaction) => {
+    transactions.forEach(transaction => {
       // Extract the category from the transaction
       const category = transaction.category;
 
@@ -156,7 +156,7 @@ export function countTransactionCategories(
 
   // Convert the categoryCounts object to an array of objects
   const aggregatedCategories: CategoryCount[] = Object.keys(categoryCounts).map(
-    (category) => ({
+    category => ({
       name: category,
       count: categoryCounts[category],
       totalCount,
