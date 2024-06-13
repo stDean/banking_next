@@ -1,12 +1,13 @@
 import { FC } from "react";
+import { AuthForm } from "@/components/auth/AuthForm";
 
 interface LoginPageProps {}
 
 const LoginPage: FC<LoginPageProps> = () => {
   return (
-    <div>
-      <p>Login In Page</p>
-    </div>
+    <section className="flex-center size-full max-sm:px-6">
+      <AuthForm type="sign-in" />
+    </section>
   );
 };
 

@@ -1,12 +1,13 @@
 import { FC } from "react";
+import { AuthForm } from "@/components/auth/AuthForm";
 
 interface RegisterPageProps {}
 
 const RegisterPage: FC<RegisterPageProps> = () => {
   return (
-    <div>
-      <p>Sign Up Page</p>
-    </div>
+    <section className="flex-center size-full max-sm:px-6">
+      <AuthForm type="sign-up" />
+    </section>
   );
 };
 
