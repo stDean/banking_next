@@ -1,11 +1,16 @@
 import HeaderBox from "@/components/HeaderBox";
+import { RightSideBar } from "@/components/RightSideBar";
 import { TotalBalanceBox } from "@/components/TotalBalanceBox";
 import { FC } from "react";
 
 interface HomePageProps {}
 
 const HomePage: FC<HomePageProps> = () => {
-  const loggedInUser = { name: "Dean" };
+  const loggedInUser = {
+    firstName: "Dean",
+    lastName: "Sheriff",
+    email: "deans@gmail.com",
+  };
 
   return (
     <section className="home">
@@ -24,7 +29,17 @@ const HomePage: FC<HomePageProps> = () => {
             totalCurrentBalance={10000}
           />
         </header>
+
+        {/* RECENT TRANSACTIONS */}
+        RECENT TRANSACTIONS
       </div>
+
+      {/* Right Side Bar */}
+      <RightSideBar
+        user={loggedInUser}
+        transactions={[]}
+        banks={[{ currentBalance: 1250 }, { currentBalance: 3400 }]}
+      />
     </section>
   );
 };
