@@ -1,5 +1,6 @@
 "use client";
 
+import { logIn, signUp } from "@/lib/actions/user.actions";
 import CustomInput from "@/components/auth/CustomInput";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
@@ -8,13 +9,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 export const AuthForm = ({ type }: AuthFormProps) => {
   const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const router = useRouter();
 
   // 1. Define your form.
   const formSchema = authFormSchema(type);
@@ -27,11 +31,41 @@ export const AuthForm = ({ type }: AuthFormProps) => {
   });
 
   // 2. Define a submit handler.
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
 
-    
-    console.log("Hello There");
+    try {
+      if (type === "sign-up") {
+        // const userData = {
+        //   firstName: values.firstName!,
+        //   lastName: values.lastName!,
+        //   address1: values.address1!,
+        //   city: values.city!,
+        //   state: values.state!,
+        //   postalCode: values.postalCode!,
+        //   dateOfBirth: values.dateOfBirth!,
+        //   ssn: values.ssn!,
+        //   email: values.email,
+        //   password: values.password,
+        // };
+
+        const newUser = await signUp(values);
+        setUser(newUser);
+      }
+
+      if (type === "sign-in") {
+        // const res = await logIn({
+        //   email: values.email,
+        //   password: values.password,
+        // });
+
+        // if (res) router.push("/");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
