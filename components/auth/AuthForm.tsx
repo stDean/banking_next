@@ -45,8 +45,8 @@ export const AuthForm = ({ type }: AuthFormProps) => {
         //   postalCode: values.postalCode!,
         //   dateOfBirth: values.dateOfBirth!,
         //   ssn: values.ssn!,
-        //   email: values.email,
-        //   password: values.password,
+        //   emailsswor: values.email,
+        //   pad: values.password,
         // };
 
         const newUser = await signUp(values);
@@ -54,12 +54,12 @@ export const AuthForm = ({ type }: AuthFormProps) => {
       }
 
       if (type === "sign-in") {
-        // const res = await logIn({
-        //   email: values.email,
-        //   password: values.password,
-        // });
+        const res = await logIn({
+          email: values.email,
+          password: values.password,
+        });
 
-        // if (res) router.push("/");
+        if (res) router.push("/");
       }
     } catch (error) {
       console.log(error);

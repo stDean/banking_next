@@ -1,16 +1,13 @@
 import HeaderBox from "@/components/HeaderBox";
 import { RightSideBar } from "@/components/RightSideBar";
 import { TotalBalanceBox } from "@/components/TotalBalanceBox";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
 import { FC } from "react";
 
 interface HomePageProps {}
 
-const HomePage: FC<HomePageProps> = () => {
-  const loggedInUser = {
-    firstName: "Dean",
-    lastName: "Sheriff",
-    email: "deans@gmail.com",
-  };
+const HomePage: FC<HomePageProps> = async () => {
+  const loggedInUser = await getLoggedInUser()
 
   return (
     <section className="home">
@@ -19,7 +16,7 @@ const HomePage: FC<HomePageProps> = () => {
           <HeaderBox
             type="greeting"
             title="Welcome,"
-            user={loggedInUser.name || "Guest"}
+            user={loggedInUser?.name || "Guest"}
             subtext="Access and manage your account and transaction"
           />
 

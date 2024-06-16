@@ -2,13 +2,16 @@ import { FC, ReactNode } from "react";
 import { SideBar } from "@/components/SideBar";
 import Image from "next/image";
 import { MobileNav } from "@/components/MobileNav";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
+import { redirect } from "next/navigation";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
-const Layout: FC<LayoutProps> = ({ children }) => {
-  const loggedInUser = { firstName: "Dean", lastName: "Sheriff" };
+const Layout: FC<LayoutProps> = async ({ children }) => {
+  const loggedInUser = await getLoggedInUser();
+  if (!loggedInUser) redirect("/sign-in");
 
   return (
     <main className="flex h-screen w-full font-inter">
