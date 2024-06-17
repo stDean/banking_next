@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { PlaidLink } from "@/components/PlaidLink";
 
 export const AuthForm = ({ type }: AuthFormProps) => {
   const [user, setUser] = useState(null);
@@ -95,12 +96,11 @@ export const AuthForm = ({ type }: AuthFormProps) => {
         </div>
       </header>
 
-      {user ? (
+      {/* {user ? ( */}
         <div className="flex flex-col gap-4">
-          {/* Add Plaidlink */}
-          {/* <PlaidLink user={user} variant="primary" /> */}
+          <PlaidLink user={user} variant="primary" />
         </div>
-      ) : (
+      {/* ) : ( */}
         <>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -212,7 +212,7 @@ export const AuthForm = ({ type }: AuthFormProps) => {
             </Link>
           </footer>
         </>
-      )}
+      {/* )} */}
     </section>
   );
 };
