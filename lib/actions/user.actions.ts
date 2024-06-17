@@ -55,7 +55,8 @@ export const logIn = async ({ email, password }: signInProps) => {
       secure: true,
     });
 
-    return parseStringify(session);
+    const user = await getUserInfo({ userId: session.userId });
+    return parseStringify(user);
   } catch (error) {
     console.error("Error", error);
   }
@@ -118,7 +119,7 @@ export async function getLoggedInUser() {
     const result = await account.get();
     const user = await getUserInfo({ userId: result.$id });
 
-    return parseStringify(result);
+    return parseStringify(user);
   } catch (error) {
     return null;
   }
@@ -244,6 +245,39 @@ export const createBankAccount = async ({
     );
 
     return parseStringify(bankAccount);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// BANK ACTIONS
+export const getBanks = async ({ userId }: getBanksProps) => {
+  try {
+    const { database } = await createAdminClient();
+
+    const bank = await database.listDocuments(
+      DATABASE_ID!,
+      BANK_COLLECTION_ID!,
+      [Query.equal("userId", [userId])]
+    );
+
+    return parseStringify(bank.documents);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getBank = async ({ documentId }: getBankProps) => {
+  try {
+    const { database } = await createAdminClient();
+
+    const bank = await database.listDocuments(
+      DATABASE_ID!,
+      BANK_COLLECTION_ID!,
+      [Query.equal("$id", [documentId])]
+    );
+
+    return parseStringify(bank.documents[0]);
   } catch (error) {
     console.log(error);
   }

@@ -11,6 +11,6 @@ by toba
 - React-Countup to count up numbers
 - zod for schemas
 - query-string for string formatting
-- plaid for 
+- plaid for securing transactions
 - dwolla for bank transfers
 - sentry for error handling
