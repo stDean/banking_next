@@ -2,7 +2,7 @@ by toba
 
 # Summary
 
-## Tech User
+## Tech Used
 - NextJs
 - TypeScript
 - TailwindCSS for styling
@@ -11,3 +11,6 @@ by toba
 - React-Countup to count up numbers
 - zod for schemas
 - query-string for string formatting
+- plaid for 
+- dwolla for bank transfers
+- sentry for error handling

@@ -37,20 +37,20 @@ export const AuthForm = ({ type }: AuthFormProps) => {
 
     try {
       if (type === "sign-up") {
-        // const userData = {
-        //   firstName: values.firstName!,
-        //   lastName: values.lastName!,
-        //   address1: values.address1!,
-        //   city: values.city!,
-        //   state: values.state!,
-        //   postalCode: values.postalCode!,
-        //   dateOfBirth: values.dateOfBirth!,
-        //   ssn: values.ssn!,
-        //   emailsswor: values.email,
-        //   pad: values.password,
-        // };
+        const userData = {
+          firstName: values.firstName!,
+          lastName: values.lastName!,
+          address1: values.address1!,
+          city: values.city!,
+          state: values.state!,
+          postalCode: values.postalCode!,
+          dateOfBirth: values.dateOfBirth!,
+          ssn: values.ssn!,
+          email: values.email,
+          password: values.password,
+        };
 
-        const newUser = await signUp(values);
+        const newUser = await signUp(userData);
         setUser(newUser);
       }
 
@@ -96,11 +96,11 @@ export const AuthForm = ({ type }: AuthFormProps) => {
         </div>
       </header>
 
-      {/* {user ? ( */}
+      {user ? (
         <div className="flex flex-col gap-4">
           <PlaidLink user={user} variant="primary" />
         </div>
-      {/* ) : ( */}
+      ) : (
         <>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -212,7 +212,7 @@ export const AuthForm = ({ type }: AuthFormProps) => {
             </Link>
           </footer>
         </>
-      {/* )} */}
+      )}
     </section>
   );
 };
